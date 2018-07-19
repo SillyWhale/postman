@@ -32,14 +32,14 @@
 # docker run -ti --rm \
   --network="host" \
   --device /dev/snd \
-  -u $UID
-  -v /usr/share/icons/:/usr/share/icons/
-  -v /etc/passwd:/etc/passwd
-  -v $HOME:$HOME
-  -v /tmp/.X11-unix:/tmp/.X11-unix
-  -v /tmp/.docker.xauth:/tmp/.docker.xauth
-  -e DISPLAY=$DISPLAY
-  -e XAUTHORITY=/tmp/.docker.xauth
+  -u $UID \
+  -v /usr/share/icons/:/usr/share/icons/ \
+  -v /etc/passwd:/etc/passwd \
+  -v $HOME:$HOME \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v /tmp/.docker.xauth:/tmp/.docker.xauth \
+  -e DISPLAY=$DISPLAY \
+  -e XAUTHORITY=/tmp/.docker.xauth \
   sillywhale/postman
 ```
 
