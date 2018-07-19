@@ -5,10 +5,10 @@
 # Quick reference
 
 - **Where to file issues**:  
-  [https://github.com/SillyWhale/privatebin/issues](https://github.com/SillyWhale/privatebin/issues)
+  [https://github.com/SillyWhale/privatebin/issues](https://github.com/SillyWhale/postman/issues)
 
 - **Maintained by**:  
-  [SillyWhale](https://github.com/SillyWhale/privatebin)
+  [SillyWhale](https://github.com/SillyWhale/postman)
 
 - **Source of this description**:  
   [docs repo's directory](https://github.com/SillyWhale/_documentation)
@@ -18,54 +18,34 @@
 
 # What is privatebin ?
 
-[Privatebin](https://privatebin.info/) description.  
+[Postman](https://www.getpostman.com/) description.  
 
 # How to use this image
 
 ## Usage
 
-Use like you would any other base image:
 
-```dockerfile
-FROM alpine:latest
-LABEL maintainer="SillyWhale <contact@sillywhale.wtf>"
 
-ENV PB_VERSION=1.1.1 \
-    PB_URL=https://github.com/PrivateBin/PrivateBin/archive/${PB_PKG} \
-    PB_ROOT_DIR=/privatebin
-ENV PB_PKG=${PB_VERSION}.tar.gz
-
-RUN \
-  apk update && apk upgrade && \
-  apk add curl nginx supervisor ca-certificates tar && \
-  apk add php7-fpm php7-gd php7-mcrypt php7-json php7-zlib php7-pdo php7-pdo_mysql php7-sqlite3 php7-pdo_sqlite && \
-  rm /etc/nginx/conf.d/default.conf && rm /etc/php7/php-fpm.d/www.conf && \
-  mkdir ${PB_ROOT_DIR} && cd ${PB_ROOT_DIR} && \
-  curl --silent --location ${PB_URL} --output ${PB_PKG} && \
-  tar xf ${PB_PKG} --strip 1 && \
-  rm ${PB_PKG} && \
-  mkdir /run/nginx && \
-  mkdir /privatebin-data && \
-  echo "daemon off;" >> /etc/nginx/nginx.conf && \
-  apk del tar ca-certificates curl libcurl && rm -rf /var/cache/apk/*
-
-COPY includes/nginx.conf /etc/nginx/conf.d/default.conf
-COPY includes/php7-fpm.conf /etc/php7/php-fpm.d/privatebin.conf
-COPY includes/supervisord.conf /usr/local/etc/supervisord.conf
-COPY includes/entrypoint.sh /entrypoint.sh
-COPY includes/privatebin.conf.php ${PB_ROOT_DIR}/cfg/conf.php
-
-RUN \
-  chmod +x /entrypoint.sh
-
-ENTRYPOINT [ "/entrypoint.sh" ]
 ```
+# xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f /tmp/.docker.xauth nmerge -
 
-This yields us a virtual image size of about 4MB image.
+# docker run -ti --rm \
+  --network="host" \
+  --device /dev/snd \
+  -u $UID
+  -v /usr/share/icons/:/usr/share/icons/
+  -v /etc/passwd:/etc/passwd
+  -v $HOME:$HOME
+  -v /tmp/.X11-unix:/tmp/.X11-unix
+  -v /tmp/.docker.xauth:/tmp/.docker.xauth
+  -e DISPLAY=$DISPLAY
+  -e XAUTHORITY=/tmp/.docker.xauth
+  sillywhale/postman
+```
 
 ## Documentation
 
-This image is well documented. [Check out the documentation at Viewdocs](http://docs.sillywhale.wtf/privatebin/).
+This image is well documented. [Check out the documentation at Viewdocs](http://docs.sillywhale.wtf/postman/).
 
 # License
 
