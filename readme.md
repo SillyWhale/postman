@@ -5,7 +5,7 @@
 # Quick reference
 
 - **Where to file issues**:  
-  [https://github.com/SillyWhale/privatebin/issues](https://github.com/SillyWhale/postman/issues)
+  [https://github.com/SillyWhale/postman/issues](https://github.com/SillyWhale/postman/issues)
 
 - **Maintained by**:  
   [SillyWhale](https://github.com/SillyWhale/postman)
@@ -16,7 +16,7 @@
 - **Supported Docker versions**:  
   [the latest release](https://github.com/docker/docker-ce/releases/latest)
 
-# What is privatebin ?
+# What is Postman ?
 
 [Postman](https://www.getpostman.com/) description.  
 
@@ -24,12 +24,10 @@
 
 ## Usage
 
-
-
 ```
-# xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f /tmp/.docker.xauth nmerge -
+$ xauth nlist :0 | sed -e 's/^..../ffff/' | xauth -f /tmp/.docker.xauth nmerge -
 
-# docker run -ti --rm \
+$ docker run -ti --rm \
   --network="host" \
   --device /dev/snd \
   -u $UID \
@@ -43,13 +41,18 @@
   sillywhale/postman
 ```
 
+it is possible to use the "[docker-x11](https://gitea.anthonymoll.fr/anthony/docker-X11)" script :
+
+```$ docker-x11 run -d sillywhale/postman```
+
+
 ## Documentation
 
 This image is well documented. [Check out the documentation at Viewdocs](http://docs.sillywhale.wtf/postman/).
 
 # License
 
-View [license information](https://github.com/PrivateBin/PrivateBin/blob/master/LICENSE.md) for the software contained in this image.
+View [license information](https://www.getpostman.com/licenses/postman_eula) for the software contained in this image.
 
 As with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
 
